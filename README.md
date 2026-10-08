@@ -46,16 +46,24 @@ Para cada repositório, escolha uma prática ou dado de teste relevante e expliq
 
 ### Repositório 1 
 
-Repositório: `<URL_DO_REPOSITÓRIO>`
+Repositório: `https://github.com/n8n-io/n8n`
 
-URL TestMiner: `<URL_NO_TESTMINER>`
+URL TestMiner: `https://andrehora.github.io/testminer/#n8n-io/n8n`
 
-Explicação: `<SUA_EXPLICAÇÃO>`
+Explicação: `No repositório do n8n, uma plataforma de automação de workflows, destaca-se a prática de testes de integração baseados em fixtures e mocks de APIs externas, atrelada à divisão arquitetural da suíte de testes em um ambiente monorepo.
+
+Como o n8n interage com centenas de serviços de terceiros (como Slack, GitHub e Google Sheets), a validação de cada "nó" de integração é feita utilizando arquivos de respostas simuladas (fixtures) em vez de realizar chamadas de rede reais durante a execução da suíte. Essa abordagem é crucial para a confiabilidade do processo de integração contínua, pois impede que limitações de taxa de requisição (rate limits), oscilações na conexão ou instabilidades nas APIs externas quebrem os testes de forma falso-positiva.
+
+Além disso, a estrutura de pastas do projeto isola rigidamente os testes do motor central de execução (packages/cli) dos testes focados nas integrações individuais (packages/nodes-base). Isso permite que os mantenedores validem o comportamento do ecossistema central — como o gerenciamento de memória, gatilhos e fila de tarefas — sem a necessidade de rodar exaustivamente a suíte inteira de cada um dos nós disponíveis, otimizando o uso de recursos e acelerando os testes automatizados.`
 
 ### Repositório 2
 
-Repositório: `<URL_DO_REPOSITÓRIO>`
+Repositório: `https://github.com/angular/angular`
 
-URL TestMiner: `<URL_NO_TESTMINER>`
+URL TestMiner: `https://andrehora.github.io/testminer/#angular/angular`
 
-Explicação: `<SUA_EXPLICAÇÃO>`
+Explicação: `No repositório da framework Angular, uma prática de teste bastante marcante é a co-localização de testes unitários (In-source Testing), combinada a uma separação clara para os testes de integração e ponta a ponta (End-to-End).
+
+A co-localização consiste em manter os arquivos de testes unitários (identificados pela extensão *.spec.ts) no mesmo diretório em que reside o código-fonte correspondente, como posicionar button.component.spec.ts diretamente ao lado de button.component.ts. Essa estratégia traz um ganho significativo na manutenibilidade do projeto: a proximidade física entre o código funcional e suas validações facilita a navegação do desenvolvedor, sinaliza de imediato a ausência de cobertura de testes em um componente e incentiva a atualização constante das suítes sempre que uma alteração é realizada.
+
+Por outro lado, o Angular organiza as suas suítes de testes de integração e E2E em diretórios e pacotes dedicados dentro do monorepo. Como os testes de integração exigem um tempo maior de execução e configurações de ambiente mais pesadas, mantê-los isolados evita que a execução rápida dos testes unitários seja prejudicada, garantindo um ciclo de feedback ágil durante o desenvolvimento diário.`
